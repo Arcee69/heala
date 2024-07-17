@@ -1,15 +1,19 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../pages/Home'
-import Layouts from '../layouts'
+import Find from '../pages/Find'
+import HomePageLayout from '../layouts/HomePageLayout'
+import Jobs from '../pages/Jobs'
 
 
 
 const Routers = () => {
   return (
     <Routes>
-      <Route element={<Layouts />}>
+      <Route element={<HomePageLayout />}>
         <Route path='/' element={<Home />} />
+        <Route path='/find-a-doctor' element={<Find />} />
+        <Route path='/jobs' element={<Jobs />} />
       </Route>
     </Routes>
   )

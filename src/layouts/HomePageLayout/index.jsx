@@ -2,12 +2,16 @@ import React from 'react'
 import Header from './Header'
 import { Outlet } from 'react-router-dom'
 import Footer from './Footer'
+import MiniHeader from './MiniHeader'
 
-const Layouts = () => {
+const HomePageLayout = () => {
   return (
     <div className='w-full overflow-x-hidden'>
-        <div>
+        <div className='hidden lg:flex'>
             <Header />
+        </div>
+        <div className='xs:flex lg:hidden' >
+          <MiniHeader />
         </div>
         <div>
             <Outlet />
@@ -19,4 +23,4 @@ const Layouts = () => {
   )
 }
 
-export default Layouts
+export default HomePageLayout

@@ -38,36 +38,58 @@ const Home = () => {
     const [search, setSearch] = useState("")
 
   return (
-    <div className='w-full'>
-        <div className='bg-[#FAFAFA] h-[612px] w-full px-[104px]'>
-            <div className='flex items-center '>
-                <div className='flex gap-[36px] flex-col items-start'>
-                    <p className='text-[#25324B] font-euclid text-[57px] font-semibold leading-[65px]'>
+    <div className='w-full bg-[#fff] flex flex-col mt-20 lg:mt-0'>
+        <div className='flex items-center p-6 gap-4 lg:hidden'>
+            <div className='rounded-[24px] w-[297px] p-4 border border-[#f6f6f6] h-[64px] shadow-lg flex items-center'>
+                <img src={Search} alt='Search' className='w-[17px] h-[17px] mt-1' />
+                <input 
+                    type='text'
+                    value={search}
+                    placeholder='Search name, Speciality'
+                    onChange={(e) => setSearch(e.target.value)}
+                    className='w-full text-[#5D626C] font-euclid font-medium text-sm'
+                />
+            </div>
+            <div className='flex items-center gap-2.5 w-[32px] justify-center p-2 rounded-[100px] border border-[#80808040]'>
+                <img src={Filter} alt='Filter' className='w-4 h-4'/>
+            </div>
+        </div>
+        <div className='bg-[#FAFAFA] h-[612px] w-full px-5 lg:px-[104px]'>
+            <div className='flex flex-col lg:flex-row items-center '>
+                <img src={Doctor} alt='Doctor'  className=' flex lg:hidden mb-[29px]'/>
+                <div className='flex w-full gap-[36px] flex-col items-start'>
+                    <p className='text-[#25324B] font-euclid text-center lg:text-left text-[24px] lg:text-[57px] font-semibold leading-[36px] lg:leading-[65px]'>
                         Meet with an urgent care doctor 
                         <span className='text-[#3E5EA9] ml-2'>in minutes</span>
                     </p>
-                    <p className='text-[#5D626C] font-medium font-euclid text-base'>
+                    <p className='text-[#5D626C] font-medium font-euclid text-center lg:text-left text-base'>
                         With 24/7 access to online doctors and other medical experts, 
                         care is always available, anytime and anywhere.
                     </p>
-                    <div className='flex gap-[8px] items-center'>
+                    <div className='flex gap-[8px] flex-col lg:flex-row lg:justify-start w-full items-center'>
                         <button
                             type='button'
-                            className='border-[#3E5EA9] border rounded-lg w-[231px] h-[48px] flex flex-col items-center justify-center'
+                            className='bg-[#3E5EA9] rounded-lg h-[48px] lg:hidden w-[170px]'
+                        >
+                            <p className='text-[#fff] text-base font-euclid'>Find a Doctor</p>
+                        </button>
+                        <button
+                            type='button'
+                            className='border-[#3E5EA9] lg:border rounded-lg w-[231px] h-[48px] flex flex-col items-center justify-center'
                         >
                             <p className='text-base font-medium text-[#3E5EA9] font-euclid'>Become a Heala Doctor</p>
                         </button>
                         <button
                             type='button'
-                            className='bg-[#3E5EA9] rounded-lg h-[48px] w-[170px]'
+                            className='bg-[#3E5EA9] rounded-lg hidden lg:flex items-center justify-center h-[48px] w-[170px]'
                         >
                             <p className='text-[#fff] text-base font-euclid'>Find a Doctor</p>
                         </button>
                     </div>
                 </div>
-                <img src={Doctor} alt='Doctor'  className='w-[668px] h-[432px]'/>
+                <img src={Doctor} alt='Doctor'  className='w-[668px] h-[432px] hidden lg:flex'/>
             </div>
-            <div className='w-[1000px] rounded-[24px] bg-[#fff] flex items-center p-2 mx-auto  mt-[64px] shadow-lg'>
+            <div className='w-[1000px] hidden rounded-[24px] bg-[#fff] lg:flex items-center p-2 mx-auto  mt-[64px] shadow-lg'>
                 <div className='flex items-center mx-6 gap-1 w-[573px]'>
                     <img src={Search} alt='Search' className='w-[17px] h-[17px] mt-1' />
                     <input 
@@ -78,7 +100,7 @@ const Home = () => {
                         className='w-full text-[#5D626C] font-euclid font-medium text-base'
                     />
                 </div>
-                <div className='bg-[#AEB0B5] h-[64px] w-1'></div>
+                <div className='bg-[#AEB0B5] h-[64px] w-[1px]'></div>
                 <div className='flex flex-col w-[163px] ml-6 mr-3'>
                     <label htmlFor='Location' className='font-euclid font-normal text-[#00141B] ml-3 text-[13px]' >Location</label>
                         <Listbox value={selected} onChange={setSelected}>
@@ -137,7 +159,7 @@ const Home = () => {
                 </button>
             </div>
         </div>
-        <div className='flex w-full item-center justify-center gap-[64px] p-4'>
+        <div className='hidden lg:flex w-full item-center justify-center gap-[64px] p-4'>
             <div className='flex items-center gap-2.5 w-[111px] justify-center p-2 rounded-[16px] border border-[#80808040]'>
                 <img src={Filter} alt='Filter' className='w-[18px] h-[18px]'/>
                 <p className='text-[#293F71] font-medium text-base font-euclid'>Filters</p>
@@ -386,114 +408,115 @@ const Home = () => {
             </div>
  
         </div>
-        <div className='w-full px-[104px] flex flex-col pb-[59px] gap-[28px] mt-5'>
-            <div className='flex items-center justify-between '>
-                <p className='text-[#25324B] font-semibold text-[36px] font-euclid'>Our Top Doctors</p>
-                <p className='text-[#3E5EA9] text-base font-medium font-euclid'>See More</p>
+        <div className='w-full px-5 lg:px-[104px] flex flex-col pb-[59px] gap-[28px] mt-5'>
+            <div className='flex items-center lg:justify-between justify-center'>
+                <p className='text-[#25324B] font-semibold text-[20px] lg:text-[36px] font-euclid'>Our Top Doctors</p>
+                <p className='text-[#3E5EA9] text-base hidden lg:flex font-medium font-euclid'>See More</p>
             </div>
-            <div className='mt-[28px] grid grid-cols-4 gap-6'>
-                <div className='flex flex-col gap-3 h-[342px]'>
-                    <img src={Dammy} alt='Dammy' className='w-[300px] h-[282px]' />
+            <div className='mt-[28px] grid grid-cols-2 lg:grid-cols-4 gap-6'>
+                <div className='flex flex-col gap-3 lg:h-[342px]'>
+                    <img src={Dammy} alt='Dammy' className='lg:w-[300px] lg:h-[282px]' />
                     <div className='flex items-start justify-between'>
                         <div className='flex flex-col'>
                             <p className='text-[#000000] font-medium font-euclid text-base'>Dr. Dammy</p>
-                            <p className='text-[#5D626C] font-euclid text-[13px] font-normal'>Family Medicine</p>
+                            <p className='text-[#5D626C] font-euclid text-[13px] hidden lg:block font-normal'>Family Medicine</p>
                         </div>
                         <p className='text-[#3E5EA9] font-medium text-base font-euclid'>₦ 5,500</p>
                     </div>
                 </div>
-                <div className='flex flex-col gap-3 h-[342px]'>
-                    <img src={Odun} alt='Odun' className='w-[300px] h-[282px]' />
+                <div className='flex flex-col gap-3 lg:h-[342px]'>
+                    <img src={Odun} alt='Odun' className='lg:w-[300px] lg:h-[282px]' />
                     <div className='flex items-start justify-between'>
                         <div className='flex flex-col'>
                             <p className='text-[#000000] font-medium font-euclid text-base'>Dr. Odun</p>
-                            <p className='text-[#5D626C] font-euclid text-[13px] font-normal'>Pediatrician</p>
+                            <p className='text-[#5D626C] font-euclid hidden lg:block text-[13px] font-normal'>Pediatrician</p>
                         </div>
                         <p className='text-[#3E5EA9] font-medium text-base font-euclid'>₦ 5,500</p>
                     </div>
                 </div>
-                <div className='flex flex-col gap-3 h-[342px]'>
-                    <img src={Pizzy} alt='Pizzy' className='w-[300px] h-[282px]' />
+                <div className='flex flex-col gap-3 lg:h-[342px]'>
+                    <img src={Pizzy} alt='Pizzy' className='lg:w-[300px] lg:h-[282px]' />
                     <div className='flex items-start justify-between'>
                         <div className='flex flex-col'>
                             <p className='text-[#000000] font-medium font-euclid text-base'>Dr. Pizzy</p>
-                            <p className='text-[#5D626C] font-euclid text-[13px] font-normal'>Dermatologist</p>
+                            <p className='text-[#5D626C] font-euclid hidden lg:block text-[13px] font-normal'>Dermatologist</p>
                         </div>
                         <p className='text-[#3E5EA9] font-medium text-base font-euclid'>₦ 5,500</p>
                     </div>
                 </div>
-                <div className='flex flex-col gap-3  h-[342px]'>
-                    <img src={Bayo} alt='Bayo' className='w-[300px] h-[282px]' />
+                <div className='flex flex-col gap-3  lg:h-[342px]'>
+                    <img src={Bayo} alt='Bayo' className='lg:w-[300px] lg:h-[282px]' />
                     <div className='flex items-start justify-between'>
                         <div className='flex flex-col'>
                             <p className='text-[#000000] font-medium font-euclid text-base'>Dr. Bayo</p>
-                            <p className='text-[#5D626C] font-euclid text-[13px] font-normal'>Orthopedic Surgeon</p>
+                            <p className='text-[#5D626C] font-euclid hidden lg:block text-[13px] font-normal'>Orthopedic Surgeon</p>
                         </div>
                         <p className='text-[#3E5EA9] font-medium text-base font-euclid'>₦ 5,500</p>
                     </div>
                 </div>
 
-                <div className='flex flex-col gap-3 h-[342px]'>
-                    <img src={Dammy} alt='Dammy' className='w-[300px] h-[282px]' />
+                <div className='flex flex-col gap-3 lg:h-[342px]'>
+                    <img src={Dammy} alt='Dammy' className='lg:w-[300px] lg:h-[282px]' />
                     <div className='flex items-start justify-between'>
                         <div className='flex flex-col'>
                             <p className='text-[#000000] font-medium font-euclid text-base'>Dr. Dammy</p>
-                            <p className='text-[#5D626C] font-euclid text-[13px] font-normal'>Family Medicine</p>
+                            <p className='text-[#5D626C] font-euclid hidden lg:block text-[13px] font-normal'>Family Medicine</p>
                         </div>
                         <p className='text-[#3E5EA9] font-medium text-base font-euclid'>₦ 5,500</p>
                     </div>
                 </div>
-                <div className='flex flex-col gap-3 h-[342px]'>
-                    <img src={Odun} alt='Odun' className='w-[300px] h-[282px]' />
+                <div className='flex flex-col gap-3 lg:h-[342px]'>
+                    <img src={Odun} alt='Odun' className='lg:w-[300px] lg:h-[282px]' />
                     <div className='flex items-start justify-between'>
                         <div className='flex flex-col'>
                             <p className='text-[#000000] font-medium font-euclid text-base'>Dr. Odun</p>
-                            <p className='text-[#5D626C] font-euclid text-[13px] font-normal'>Pediatrician</p>
+                            <p className='text-[#5D626C] font-euclid hidden lg:block text-[13px] font-normal'>Pediatrician</p>
                         </div>
                         <p className='text-[#3E5EA9] font-medium text-base font-euclid'>₦ 5,500</p>
                     </div>
                 </div>
-                <div className='flex flex-col gap-3 h-[342px]'>
-                    <img src={Pizzy} alt='Pizzy' className='w-[300px] h-[282px]' />
+                <div className='flex flex-col gap-3 lg:h-[342px]'>
+                    <img src={Pizzy} alt='Pizzy' className='lg:w-[300px] lg:h-[282px]' />
                     <div className='flex items-start justify-between'>
                         <div className='flex flex-col'>
                             <p className='text-[#000000] font-medium font-euclid text-base'>Dr. Pizzy</p>
-                            <p className='text-[#5D626C] font-euclid text-[13px] font-normal'>Dermatologist</p>
+                            <p className='text-[#5D626C] font-euclid hidden lg:block text-[13px] font-normal'>Dermatologist</p>
                         </div>
                         <p className='text-[#3E5EA9] font-medium text-base font-euclid'>₦ 5,500</p>
                     </div>
                 </div>
-                <div className='flex flex-col gap-3  h-[342px]'>
-                    <img src={Bayo} alt='Bayo' className='w-[300px] h-[282px]' />
+                <div className='flex flex-col gap-3  lg:h-[342px]'>
+                    <img src={Bayo} alt='Bayo' className='lg:w-[300px] lg:h-[282px]' />
                     <div className='flex items-start justify-between'>
                         <div className='flex flex-col'>
                             <p className='text-[#000000] font-medium font-euclid text-base'>Dr. Bayo</p>
-                            <p className='text-[#5D626C] font-euclid text-[13px] font-normal'>Orthopedic Surgeon</p>
+                            <p className='text-[#5D626C] font-euclid hidden lg:block text-[13px] font-normal'>Orthopedic Surgeon</p>
                         </div>
                         <p className='text-[#3E5EA9] font-medium text-base font-euclid'>₦ 5,500</p>
                     </div>
                 </div>
 
             </div>
+            <p className='font-euclid font-medium text-[13px] text-center lg:hidden'>Continue to <span className='text-[#3E5EA9] text-[13px] font-medium'>see more</span></p>
         </div>
 
-        <div className='bg-[#FCFCFD] w-full flex flex-col items-center justify-center gap-[104px] pt-[68px] pb-[112px]'>
-            <div className='flex flex-col gap-6 w-[951px] items-center justify-center'>
-                <p className='text-[#293F71]  font-semibold text-[40px] font-euclid'>Virtual Consultation</p>
-                <p className='text-[#5D626C] font-medium text-[24px] font-euclid text-center'>
+        <div className='bg-[#FCFCFD] w-full flex flex-col items-center justify-center gap-[49px] lg:gap-[104px] px-5 lg:px-0 pt-[35px] lg:pt-[68px] pb-[35px] lg:pb-[112px]'>
+            <div className='flex flex-col gap-6 lg:w-[951px] items-center justify-center'>
+                <p className='text-[#293F71] font-semibold text-[20px] lg:text-[40px] font-euclid'>Virtual Consultation</p>
+                <p className='text-[#5D626C] font-medium text-xs lg:text-[24px] font-euclid leading-[15px] lg:leading-[36px] text-center'>
                     Virtual consultations, also known as telemedicine or telehealth, 
                     offer a range of benefits for both healthcare providers and patients
                 </p>
 
             </div>
-            <div className='flex items-start w-full px-[104px] gap-[54px]'>
-                <img src={Consultation} alt='Consultation' className='w-[499px] ' />
-                <div className='grid grid-cols-2 gap-[38px]'>
+            <div className='flex flex-col lg:flex-row lg:items-start w-full lg:px-[104px] gap-[54px]'>
+                <img src={Consultation} alt='Consultation' className='lg:w-[499px] ' />
+                <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-[38px]'>
                     <div className='flex flex-col w-[300px] gap-4 h-[212px]'>
                         <div className='w-[30px] h-[30px] flex items-center justify-center rounded-full border border-[#3E5EA9]'>
                             <p>1</p>
                         </div>
-                        <p className='font-medium text-[#25324B] font-euclid text-[20px]'>Preventive healthcare</p>
+                        <p className='font-medium text-[#25324B] font-euclid text-base lg:text-[20px]'>Preventive healthcare</p>
                         <p className='text-[#5D626C] font-medium font-euclid text-sm'>
                             Implementing preventive healthcare strategies can reduce the incidence of chronic diseases,
                             improve patient outcomes, and decrease the overall burden on healthcare systems. 
@@ -503,7 +526,7 @@ const Home = () => {
                         <div className='w-[30px] h-[30px] flex items-center justify-center rounded-full border border-[#3E5EA9]'>
                             <p>2</p>
                         </div>
-                        <p className='font-medium text-[#25324B] font-euclid text-[20px]'>Continuity of care</p>
+                        <p className='font-medium text-[#25324B] font-euclid text-base lg:text-[20px]'>Continuity of care</p>
                         <p className='text-[#5D626C] font-medium font-euclid text-sm'>
                             Continuity of care means having a consistent and trusted healthcare provider who understands 
                             your medical history and can offer more tailored and effective treatments.
@@ -513,7 +536,7 @@ const Home = () => {
                         <div className='w-[30px] h-[30px] flex items-center justify-center rounded-full border border-[#3E5EA9]'>
                             <p>3</p>
                         </div>
-                        <p className='font-medium text-[#25324B] font-euclid text-[20px]'>Privacy and comfort</p>
+                        <p className='font-medium text-[#25324B] font-euclid text-base lg:text-[20px]'>Privacy and comfort</p>
                         <p className='text-[#5D626C] font-medium font-euclid text-sm'>
                             Maintaining patient privacy and comfort builds trust and encourages open communication, 
                             which is essential for accurate diagnosis and effective treatment. 
@@ -523,7 +546,7 @@ const Home = () => {
                         <div className='w-[30px] h-[30px] flex items-center justify-center rounded-full border border-[#3E5EA9]'>
                             <p>4</p>
                         </div>
-                        <p className='font-medium text-[#25324B] font-euclid text-[20px]'>Payment</p>
+                        <p className='font-medium text-[#25324B] font-euclid text-base lg:text-[20px]'>Payment</p>
                         <p className='text-[#5D626C] font-medium font-euclid text-sm'>
                             Understanding the financial aspects of your healthcare allows you to plan and budget 
                             effectively, ensuring you can access the necessary treatments without unexpected financial 
@@ -535,11 +558,11 @@ const Home = () => {
 
         </div>
 
-        <div className='bg-[#FFFFFF] w-full h-[308px] px-[104px] flex items-center justify-between'>
-            <div className='flex items-start w-8/12 h-[144px] gap-4'>
-                <img src={Hourglass} alt='Hourglass' />
+        <div className='bg-[#FFFFFF] w-full lg:h-[308px] px-5 pb-6 lg:pb-0 pt-[46px] gap-6 lg:gap-0 lg:pt-0 lg:px-[104px] flex flex-col lg:flex-row items-center justify-between'>
+            <div className='flex items-start w-full lg:w-8/12 lg:h-[144px] gap-4'>
+                <img src={Hourglass} alt='Hourglass' className='w-6 h-6 lg:w-[32px] h-[40px]' />
                 <div className='flex flex-col gap-4'>
-                    <p className='font-medium text-[32px] font-euclid leading-[44px]'>Save Time: Accelerate Your Hiring with Our Doctor Recruitment Platform!</p>
+                    <p className='font-medium text-[20px] lg:text-[32px] font-euclid leading-[28px] lg:leading-[44px]'>Save Time: Accelerate Your Hiring with Our Doctor Recruitment Platform!</p>
                     <p className='text-[#6D6D6D] font-normal text-sm font-euclid'>
                         Streamline the recruitment process with advanced search filters, detailed doctor profiles, 
                         and integrated scheduling tools, saving time and resources while ensuring a seamless hiring 
@@ -547,7 +570,7 @@ const Home = () => {
                     </p>
                 </div>
             </div>
-            <button className='flex items-center w-[197px] h-[48px] border border-[#3E5EA9] rounded-lg justify-center'>
+            <button className='flex items-center w-[197px] h-[32px] lg:h-[48px] border border-[#3E5EA9] rounded-lg justify-center'>
                 <p className='text-[#3E5EA9] font-euclid text-base font-medium'>Post a Job</p>
             </button>
         </div>
