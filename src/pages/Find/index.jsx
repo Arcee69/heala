@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { IoIosArrowDown } from 'react-icons/io'
+import { Drawer } from "antd";
 
 import Search from "../../assets/svg/search.svg"
 import Arrow from "../../assets/svg/forward_arrow_white.svg"
@@ -11,6 +12,8 @@ import Dammy from "../../assets/png/dammy.png"
 import Odun from "../../assets/png/odun.png"
 import Pizzy from "../../assets/png/pizzy.png"
 import Consultation from "../../assets/png/consultation.png"
+import SearchFilter from '../Home/component/Filter';
+import { useNavigate } from 'react-router-dom';
 
 const location = [
     {name: "Location"},
@@ -33,6 +36,77 @@ const Find = () => {
     const [selected, setSelected] = useState(location[0])
     const [selectedGender, setSelectedGender] = useState(gender[0])
     const [selectedRatings, setSelectedRatings] = useState(ratings[0])
+    const [open, setOpen] = useState(false);
+
+
+    const showDrawer = () => {
+        setOpen(true);
+      };
+      const onClose = () => {
+        setOpen(false);
+      };
+
+      const navigate = useNavigate()
+
+      const doctorData = [
+        {
+            id: 1,
+            img: Dammy,
+            name: "Dr. Dammy",
+            speciality: "Family Medicine",
+            amount: "₦ 5,500"
+        },
+        {
+            id: 2,
+            img: Odun,
+            name: "Dr. Odun",
+            speciality: "Pediatrician",
+            amount: "₦ 5,500"
+        },
+        {
+            id: 3,
+            img: Pizzy,
+            name: "Dr Pizzy",
+            speciality: "Dermatologist",
+            amount: "₦ 5,500"
+        },
+        {
+            id: 4,
+            img: Bayo,
+            name: "Dr. Bayo",
+            speciality: "Orthopedic Surgeon",
+            amount: "₦ 5,500"
+        },
+        {
+            id: 5,
+            img: Dammy,
+            name: "Dr. Dammy",
+            speciality: "Family Medicine",
+            amount: "₦ 5,500"
+        },
+        {
+            id: 6,
+            img: Odun,
+            name: "Dr. Odun",
+            speciality: "Pediatrician",
+            amount: "₦ 5,500"
+        },
+        {
+            id: 7,
+            img: Pizzy,
+            name: "Dr Pizzy",
+            speciality: "Dermatologist",
+            amount: "₦ 5,500"
+        },
+        {
+            id: 8,
+            img: Bayo,
+            name: "Dr. Bayo",
+            speciality: "Orthopedic Surgeon",
+            amount: "₦ 5,500"
+        },
+    ]
+    
 
   return (
     <div className='lg:px-[104px] flex flex-col  mt-20 lg:mt-0'>
@@ -47,7 +121,7 @@ const Find = () => {
                     className='w-full text-[#5D626C] font-euclid font-medium text-sm'
                 />
             </div>
-            <div className='flex items-center gap-2.5 w-[32px] justify-center p-2 rounded-[100px] border border-[#80808040]'>
+            <div onClick={showDrawer} className='flex items-center gap-2.5 w-[32px] justify-center p-2 rounded-[100px] border border-[#80808040]'>
                 <img src={Filter} alt='Filter' className='w-4 h-4'/>
             </div>
         </div>
@@ -423,88 +497,20 @@ const Find = () => {
         </div>
 
         <div className='mt-[28px] grid grid-cols-2 px-5 lg:grid-cols-4 gap-6'>
-            <div className='flex flex-col gap-3 lg:h-[342px]'>
-                <img src={Dammy} alt='Dammy' className='lg:w-[300px] lg:h-[282px]' />
-                <div className='flex items-start justify-between'>
-                    <div className='flex flex-col'>
-                        <p className='text-[#000000] font-medium font-euclid text-sm lg:text-base'>Dr. Dammy</p>
-                        <p className='text-[#5D626C] font-euclid text-[13px] hidden lg:block font-normal'>Family Medicine</p>
+            {
+                doctorData?.map((item, index) => (
+                    <div className='flex flex-col gap-3 lg:h-[342px] cursor-pointer' key={index} onClick={() => navigate("/doctor/info", { state:item})}>
+                        <img src={item?.img} alt={item?.name} className='lg:w-[300px] lg:h-[282px]' />
+                        <div className='flex items-start justify-between'>
+                            <div className='flex flex-col'>
+                                <p className='text-[#000000] font-medium font-euclid text-base'>{item?.name}</p>
+                                <p className='text-[#5D626C] font-euclid text-[13px] hidden lg:block font-normal'>{item?.speciality}</p>
+                            </div>
+                            <p className='text-[#3E5EA9] font-medium text-base font-euclid'>{item?.amount}</p>
+                        </div>
                     </div>
-                    <p className='text-[#3E5EA9] font-medium text-sm lg:text-base font-euclid'>₦ 5,500</p>
-                </div>
-            </div>
-            <div className='flex flex-col gap-3 lg:h-[342px]'>
-                <img src={Odun} alt='Odun' className='lg:w-[300px] lg:h-[282px]' />
-                <div className='flex items-start justify-between'>
-                    <div className='flex flex-col'>
-                        <p className='text-[#000000] font-medium font-euclid text-sm lg:text-base'>Dr. Odun</p>
-                        <p className='text-[#5D626C] font-euclid text-[13px] hidden lg:block font-normal'>Pediatrician</p>
-                    </div>
-                    <p className='text-[#3E5EA9] font-medium text-sm lg:text-base font-euclid'>₦ 5,500</p>
-                </div>
-            </div>
-            <div className='flex flex-col gap-3 lg:h-[342px]'>
-                <img src={Pizzy} alt='Pizzy' className='lg:w-[300px] lg:h-[282px]' />
-                <div className='flex items-start justify-between'>
-                    <div className='flex flex-col'>
-                        <p className='text-[#000000] font-medium font-euclid text-sm lg:text-base'>Dr. Pizzy</p>
-                        <p className='text-[#5D626C] font-euclid text-[13px] hidden lg:block font-normal'>Dermatologist</p>
-                    </div>
-                    <p className='text-[#3E5EA9] font-medium text-sm lg:text-base font-euclid'>₦ 5,500</p>
-                </div>
-            </div>
-            <div className='flex flex-col gap-3  lg:h-[342px]'>
-                <img src={Bayo} alt='Bayo' className='lg:w-[300px] lg:h-[282px]' />
-                <div className='flex items-start justify-between'>
-                    <div className='flex flex-col'>
-                        <p className='text-[#000000] font-medium font-euclid text-sm lg:text-base'>Dr. Bayo</p>
-                        <p className='text-[#5D626C] font-euclid text-[13px] hidden lg:block font-normal'>Orthopedic Surgeon</p>
-                    </div>
-                    <p className='text-[#3E5EA9] font-medium  text-sm lg:text-base font-euclid'>₦ 5,500</p>
-                </div>
-            </div>
-
-            <div className='flex flex-col gap-3 lg:h-[342px]'>
-                <img src={Dammy} alt='Dammy' className='lg:w-[300px] lg:h-[282px]' />
-                <div className='flex items-start justify-between'>
-                    <div className='flex flex-col'>
-                        <p className='text-[#000000] font-medium font-euclid text-sm lg:text-base'>Dr. Dammy</p>
-                        <p className='text-[#5D626C] font-euclid text-[13px] hidden lg:block  font-normal'>Family Medicine</p>
-                    </div>
-                    <p className='text-[#3E5EA9] font-medium  text-sm lg:text-base font-euclid'>₦ 5,500</p>
-                </div>
-            </div>
-            <div className='flex flex-col gap-3 lg:h-[342px]'>
-                <img src={Odun} alt='Odun' className='lg:w-[300px] lg:h-[282px]' />
-                <div className='flex items-start justify-between'>
-                    <div className='flex flex-col'>
-                        <p className='text-[#000000] font-medium font-euclid text-sm lg:text-base'>Dr. Odun</p>
-                        <p className='text-[#5D626C] font-euclid text-[13px] hidden lg:block font-normal'>Pediatrician</p>
-                    </div>
-                    <p className='text-[#3E5EA9] font-medium  text-sm lg:text-base font-euclid'>₦ 5,500</p>
-                </div>
-            </div>
-            <div className='flex flex-col gap-3 lg:h-[342px]'>
-                <img src={Pizzy} alt='Pizzy' className='lg:w-[300px] lg:h-[282px]' />
-                <div className='flex items-start justify-between'>
-                    <div className='flex flex-col'>
-                        <p className='text-[#000000] font-medium font-euclid text-sm lg:text-base'>Dr. Pizzy</p>
-                        <p className='text-[#5D626C] font-euclid text-[13px] hidden lg:block font-normal'>Dermatologist</p>
-                    </div>
-                    <p className='text-[#3E5EA9] font-medium text-sm lg:text-base font-euclid'>₦ 5,500</p>
-                </div>
-            </div>
-            <div className='flex flex-col gap-3 lg:h-[342px]'>
-                <img src={Bayo} alt='Bayo' className='lg:w-[300px] lg:h-[282px]' />
-                <div className='flex items-start justify-between'>
-                    <div className='flex flex-col'>
-                        <p className='text-[#000000] font-medium font-euclid text-sm lg:text-base '>Dr. Bayo</p>
-                        <p className='text-[#5D626C] font-euclid text-[13px] hidden lg:block font-normal'>Orthopedic Surgeon</p>
-                    </div>
-                    <p className='text-[#3E5EA9] font-medium text-sm lg:text-base  font-euclid'>₦ 5,500</p>
-                </div>
-            </div>
-
+                ))
+            }
         </div>
 
         <div className='mt-[37px] lg:mt-[116px] mb-[83px] lg:w-[383px]  mx-auto flex flex-col gap-6 items-center'>
@@ -513,6 +519,13 @@ const Find = () => {
                 <p className='text-[#fff] font-euclid text-[13px] lg:text-base font-medium'>Show more</p>
             </button>
         </div>
+
+       
+        <SearchFilter 
+            visible={open}
+            onClose={onClose}
+        />
+   
 
     </div>
   )

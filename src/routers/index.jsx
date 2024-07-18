@@ -4,6 +4,7 @@ import Home from '../pages/Home'
 import Find from '../pages/Find'
 import HomePageLayout from '../layouts/HomePageLayout'
 import Jobs from '../pages/Jobs'
+import Info from '../pages/Info'
 
 
 
@@ -14,6 +15,7 @@ const Routers = () => {
         <Route path='/' element={<Home />} />
         <Route path='/find-a-doctor' element={<Find />} />
         <Route path='/jobs' element={<Jobs />} />
+        <Route path='/doctor/info' element={<Info />} />
       </Route>
     </Routes>
   )

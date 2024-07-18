@@ -31,6 +31,7 @@ const Header = () => {
                 :
                 <button
                     type='button'
+                    onClick={() => window.open("https://doctors.heala.io", "_blank")}
                     className={`${location.pathname === "/find-a-doctor" ? "bg-none" : "bg-[#3E5EA9] w-[275px] h-[56px] rounded-lg" }`}
                 >
                     <p className={`${location.pathname === "/find-a-doctor" ? "text-[#3E5EA9]"  : 'text-[#fff]' } font-euclid text-base font-medium `}>Become a Heala Doctor</p>
