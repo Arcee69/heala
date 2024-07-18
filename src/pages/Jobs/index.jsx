@@ -21,14 +21,37 @@ const location = [
     {name: "Ogun"}
 ]
 const gender = [
-    {name: "Gender"},
-    {name: "Male"},
-    {name: "Female"}
+    {name: " "},
+
 ]
+
 const ratings = [
     {name: "Ratings"},
     {name: 5},
     {name: 4}
+]
+
+const company = [
+    {name: ""},
+    {name: "Arm Recruitment"},
+]
+
+const jobType = [
+    {name: ""},
+    {name: "Surgeon"},
+]
+
+const experience = [
+    {name: ""},
+    {name: "Junior"},
+    {name: "Mid"},
+    {name: "Senior"}
+]
+
+const salary = [
+    {name: ""},
+    {name: "150,000"},
+    {name: "350,000"}
 ]
 
 
@@ -37,11 +60,14 @@ const Jobs = () => {
     const [search, setSearch] = useState("")
     const [selected, setSelected] = useState(location[0])
     const [selectedGender, setSelectedGender] = useState(gender[0])
-    const [selectedRatings, setSelectedRatings] = useState(ratings[0])
+    const [selectedCompany, setSelectedCompany] = useState(company[0])
+    const [selectedJobType, setSelectedJobType] = useState(jobType[0])
+    const [selectedExperience, setSelectedExperience] = useState(experience[0])
+    const [selectedSalary, setSelectedSalary] = useState(salary[0])
 
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col mt-20 lg:mt-24'>
         <div className='flex flex-col px-[104px] mb-4'>
             <div className='w-[1000px] border border-[#ccc] rounded-[24px] bg-[#fff] flex items-center p-2 mx-auto mt-[64px] shadow-lg'>
                 <div className='flex items-center mx-6 gap-1 w-[573px]'>
@@ -51,7 +77,7 @@ const Jobs = () => {
                         value={search}
                         placeholder='Search Name, Specialization, Hospital'
                         onChange={(e) => setSearch(e.target.value)}
-                        className='w-full text-[#5D626C] font-euclid font-medium text-base'
+                        className='w-full text-[#5D626C] font-euclid font-medium outline-none text-base'
                     />
                 </div>
                 <div className='bg-[#AEB0B5] h-[64px] w-[1px]'></div>
@@ -114,10 +140,11 @@ const Jobs = () => {
             </div>
 
             <div className='flex w-full item-center  gap-[64px] mt-[28px] p-4'>
-                <div className='flex items-center gap-2.5 w-[111px] justify-center p-2 rounded-[16px] border border-[#80808040]'>
+                <div className='flex items-center gap-2.5 w-[111px] justify-center px-4 rounded-[16px] border border-[#80808040]'>
                     <img src={Filter} alt='Filter' className='w-[18px] h-[18px]'/>
                     <p className='text-[#293F71] font-medium text-base font-euclid'>Filters</p>
                 </div>
+
                 <div className='w-[850px] flex items-center gap-2'>
                     <div className='w-[150px]'>
                         <Listbox value={selectedGender} onChange={setSelectedGender}>
@@ -168,10 +195,10 @@ const Jobs = () => {
                         </Listbox>  
                     </div>
                     <div className='w-[150px]'>
-                        <Listbox value={selected} onChange={setSelected}>
+                        <Listbox value={selectedCompany} onChange={setSelectedCompany}>
                             <div className="relative">
                                 <Listbox.Button className="outline-none w-full flex items-center justify-between  bg-[#fff] p-3 h-[48px]"> {/* lg:w-[420px] */}
-                                    <span className="block truncate w-full text-left text-[#000000] font-medium  font-euclid">  {"Company"}</span>
+                                    <span className="block truncate w-full text-left text-[#000000] font-medium  font-euclid">{selectedCompany.name ||  "Company"}</span>
                                     <span className="pointer-events-none absolute inset-y-0 right-0 pr-2  flex items-center">
                                         <TiArrowUnsorted
                                             className="h-5 w-5 text-[#5D626C]"
@@ -216,10 +243,10 @@ const Jobs = () => {
                         </Listbox>
                     </div>
                     <div className='w-[150px]'>
-                        <Listbox value={selectedRatings} onChange={setSelectedRatings}>
+                        <Listbox value={selectedJobType} onChange={setSelectedJobType}>
                             <div className="relative">
                                 <Listbox.Button className="outline-none w-full flex items-center  gap-2.5 bg-[#fff] p-3 h-[48px]"> {/* lg:w-[420px] */}
-                                    <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">{"Job Type"}</span>
+                                    <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">{selectedJobType.name || "Job Type"}</span>
                                     <span className="pointer-events-none absolute inset-y-0 right-0 pr-2  flex items-center">
                                         <TiArrowUnsorted
                                             className="h-5 w-5 text-[#5D626C]"
@@ -234,7 +261,7 @@ const Jobs = () => {
                                     leaveTo="opacity-0"
                                 >
                                     <Listbox.Options className="absolute z-10 mt-1 w-[300px] max-h-60  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                                        {ratings.map((item, index) => (
+                                        {jobType.map((item, index) => (
                                             <Listbox.Option
                                                 key={index}
                                                 className={({ active }) =>
@@ -264,10 +291,58 @@ const Jobs = () => {
                         </Listbox>  
                     </div>
                     <div className='w-[150px]'>
+                        <Listbox value={selectedExperience} onChange={setSelectedExperience}>
+                            <div className="relative">
+                                <Listbox.Button className="outline-none w-full flex items-center  gap-2.5 bg-[#fff] p-3 h-[48px]"> {/* lg:w-[420px] */}
+                                    <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">{selectedExperience.name || "Experience Level"}</span>
+                                    <span className="pointer-events-none absolute inset-y-0 right-0 pr-2  flex items-center">
+                                        <TiArrowUnsorted
+                                            className="h-5 w-5 text-[#5D626C]"
+                                            aria-hidden="true"
+                                        />
+                                    </span>
+                                </Listbox.Button>
+                                <Transition
+                                    as={Fragment}
+                                    leave="transition ease-in duration-100"
+                                    leaveFrom="opacity-100"
+                                    leaveTo="opacity-0"
+                                >
+                                    <Listbox.Options className="absolute z-10 mt-1 w-[300px] max-h-60  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                                        {experience.map((item, index) => (
+                                            <Listbox.Option
+                                                key={index}
+                                                className={({ active }) =>
+                                                    `relative cursor-default select-none py-2 pl-4 pr-4 ${
+                                                    active ? 'bg-[#E6F6F4] text-[#052011]' : 'text-[#052011]'
+                                                    }`
+                                                }
+                                                value={item}
+                                            >
+                                            {({ selected }) => (
+                                                <>
+                                                    <span
+                                                        className={`block truncate ${
+                                                        selected ? 'font-medium' : 'font-normal'
+                                                        } text-[#052011]`}
+                                                        onChange={setSelected}
+                                                    >
+                                                        {item}
+                                                    </span>
+                                                </>
+                                            )}
+                                            </Listbox.Option>
+                                        ))}
+                                    </Listbox.Options>
+                                </Transition>
+                            </div>
+                        </Listbox>  
+                    </div>
+                    <div className='w-[150px]'>
                         <Listbox value={selected} onChange={setSelected}>
                             <div className="relative">
                                 <Listbox.Button className="outline-none w-full flex items-center  gap-2.5 bg-[#fff] p-3 h-[48px]"> {/* lg:w-[420px] */}
-                                    <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">{"Experience Level"}</span>
+                                    <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">{selected.name || "Location"}</span>
                                     <span className="pointer-events-none absolute inset-y-0 right-0 pr-2  flex items-center">
                                         <TiArrowUnsorted
                                             className="h-5 w-5 text-[#5D626C]"
@@ -290,7 +365,7 @@ const Jobs = () => {
                                                     active ? 'bg-[#E6F6F4] text-[#052011]' : 'text-[#052011]'
                                                     }`
                                                 }
-                                                value={item.name}
+                                                value={item}
                                             >
                                             {({ selected }) => (
                                                 <>
@@ -312,10 +387,10 @@ const Jobs = () => {
                         </Listbox>  
                     </div>
                     <div className='w-[150px]'>
-                        <Listbox value={selected} onChange={setSelected}>
+                        <Listbox value={selectedSalary} onChange={setSelectedSalary}>
                             <div className="relative">
                                 <Listbox.Button className="outline-none w-full flex items-center  gap-2.5 bg-[#fff] p-3 h-[48px]"> {/* lg:w-[420px] */}
-                                    <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">{"Location"}</span>
+                                    <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">{selectedSalary.name || "Salary"}</span>
                                     <span className="pointer-events-none absolute inset-y-0 right-0 pr-2  flex items-center">
                                         <TiArrowUnsorted
                                             className="h-5 w-5 text-[#5D626C]"
@@ -330,7 +405,7 @@ const Jobs = () => {
                                     leaveTo="opacity-0"
                                 >
                                     <Listbox.Options className="absolute z-10 mt-1 w-[300px] max-h-60  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                                        {location.map((item, index) => (
+                                        {salary.map((item, index) => (
                                             <Listbox.Option
                                                 key={index}
                                                 className={({ active }) =>
@@ -338,55 +413,7 @@ const Jobs = () => {
                                                     active ? 'bg-[#E6F6F4] text-[#052011]' : 'text-[#052011]'
                                                     }`
                                                 }
-                                                value={item.name}
-                                            >
-                                            {({ selected }) => (
-                                                <>
-                                                    <span
-                                                        className={`block truncate ${
-                                                        selected ? 'font-medium' : 'font-normal'
-                                                        } text-[#052011]`}
-                                                        onChange={setSelected}
-                                                    >
-                                                        {item.name}
-                                                    </span>
-                                                </>
-                                            )}
-                                            </Listbox.Option>
-                                        ))}
-                                    </Listbox.Options>
-                                </Transition>
-                            </div>
-                        </Listbox>  
-                    </div>
-                    <div className='w-[150px]'>
-                        <Listbox value={selected} onChange={setSelected}>
-                            <div className="relative">
-                                <Listbox.Button className="outline-none w-full flex items-center  gap-2.5 bg-[#fff] p-3 h-[48px]"> {/* lg:w-[420px] */}
-                                    <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">  {"Salary"}</span>
-                                    <span className="pointer-events-none absolute inset-y-0 right-0 pr-2  flex items-center">
-                                        <TiArrowUnsorted
-                                            className="h-5 w-5 text-[#5D626C]"
-                                            aria-hidden="true"
-                                        />
-                                    </span>
-                                </Listbox.Button>
-                                <Transition
-                                    as={Fragment}
-                                    leave="transition ease-in duration-100"
-                                    leaveFrom="opacity-100"
-                                    leaveTo="opacity-0"
-                                >
-                                    <Listbox.Options className="absolute z-10 mt-1 w-[300px] max-h-60  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                                        {location.map((item, index) => (
-                                            <Listbox.Option
-                                                key={index}
-                                                className={({ active }) =>
-                                                    `relative cursor-default select-none py-2 pl-4 pr-4 ${
-                                                    active ? 'bg-[#E6F6F4] text-[#052011]' : 'text-[#052011]'
-                                                    }`
-                                                }
-                                                value={item.name}
+                                                value={item}
                                             >
                                             {({ selected }) => (
                                                 <>
@@ -420,7 +447,7 @@ const Jobs = () => {
 
             <div className='flex gap-[62px] items-start'>
                 <div className='flex flex-col gap-4'>
-                    <div className='rounded-[24px] flex flex-col gap-[35px] p-6 border border-[#3E5EA9] w-[491px] h-[355px]'>
+                    <div className='rounded-[24px] flex flex-col hover:bg-[#f6f6f6] cursor-pointer gap-[35px] p-6 border border-[#3E5EA9] w-[491px] h-[355px]'>
                         <div className='flex items-start justify-between'>
                             <div className='flex flex-col gap-[8px]'>
                                 <p className='text-[#25324B] text-base font-medium font-euclid'>Medical Doctor</p>
@@ -446,7 +473,7 @@ const Jobs = () => {
                         </div>
 
                     </div>
-                    <div className='rounded-[24px] flex flex-col gap-[35px] p-6 border border-[#3E5EA9] w-[491px] h-[355px]'>
+                    <div className='rounded-[24px] flex flex-col hover:bg-[#f6f6f6] cursor-pointer gap-[35px] p-6 border border-[#3E5EA9] w-[491px] h-[355px]'>
                         <div className='flex items-start justify-between'>
                             <div className='flex flex-col gap-[8px]'>
                                 <p className='text-[#25324B] text-base font-medium font-euclid'>Medical Doctor</p>
@@ -472,7 +499,7 @@ const Jobs = () => {
                         </div>
 
                     </div>
-                    <div className='rounded-[24px] flex flex-col gap-[35px] p-6 border border-[#3E5EA9] w-[491px] h-[355px]'>
+                    <div className='rounded-[24px] flex flex-col hover:bg-[#f6f6f6] cursor-pointer gap-[35px] p-6 border border-[#3E5EA9] w-[491px] h-[355px]'>
                         <div className='flex items-start justify-between'>
                             <div className='flex flex-col gap-[8px]'>
                                 <p className='text-[#25324B] text-base font-medium font-euclid'>Medical Doctor</p>
@@ -498,7 +525,7 @@ const Jobs = () => {
                         </div>
 
                     </div>
-                    <div className='rounded-[24px] flex flex-col gap-[35px] p-6 border border-[#3E5EA9] w-[491px] h-[355px]'>
+                    <div className='rounded-[24px] flex flex-col hover:bg-[#f6f6f6] cursor-pointer gap-[35px] p-6 border border-[#3E5EA9] w-[491px] h-[355px]'>
                         <div className='flex items-start justify-between'>
                             <div className='flex flex-col gap-[8px]'>
                                 <p className='text-[#25324B] text-base font-medium font-euclid'>Medical Doctor</p>

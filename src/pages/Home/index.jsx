@@ -22,24 +22,56 @@ const location = [
     {name: "Lagos"},
     {name: "Ogun"}
 ]
+
 const gender = [
-    {name: "Gender"},
+    {name: ""},
     {name: "Male"},
     {name: "Female"}
 ]
+
 const ratings = [
-    {name: "Ratings"},
+    {name: ""},
     {name: 5},
     {name: 4}
 ]
+
+const dates = [
+    { name: '' },
+    { name: '2024-07-18' },
+    { name: '2024-07-19' },
+    { name: '2024-07-20' },
+    { name: '2024-07-21' },
+    { name: '2024-07-22' },
+];
+
+const times = [
+    { name: '' },
+    { name: '08:00 AM' },
+    { name: '09:00 AM' },
+    { name: '10:00 AM' },
+    { name: '11:00 AM' },
+    { name: '12:00 PM' },
+];
+
+const speciality = [
+    { name: '' },
+    { name: 'Orthopedic Surgeon' },
+    { name: 'Dermatologist' },
+    { name: 'Pediatrician' },
+    { name: 'Family Medicine' },
+];
 
 
 const Home = () => {
     const [selected, setSelected] = useState(location[0])
     const [selectedGender, setSelectedGender] = useState(gender[0])
     const [selectedRatings, setSelectedRatings] = useState(ratings[0])
+    const [selectedDate, setSelectedDate] = useState(dates[0])
+    const [selectedTime, setSelectedTime] = useState(times[0])
+    const [selectedSpeciality, setSelectedSpeciality] = useState(speciality[0])
     const [search, setSearch] = useState("")
     const [open, setOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const navigate = useNavigate()
 
@@ -49,6 +81,10 @@ const Home = () => {
       const onClose = () => {
         setOpen(false);
       };
+
+      const toggleListbox = () => {
+        setIsOpen(!isOpen);
+    };
 
 
     const doctorData = [
@@ -111,7 +147,7 @@ const Home = () => {
     ]
 
   return (
-    <div className='w-full bg-[#fff] flex flex-col mt-20 lg:mt-0'>
+    <div className='w-full bg-[#fff] flex flex-col mt-20 lg:mt-24'>
         <div className='flex items-center p-6 gap-4 lg:hidden'>
             <div className='rounded-[24px] w-[297px] p-4 border border-[#f6f6f6] h-[64px] shadow-lg flex items-center'>
                 <img src={Search} alt='Search' className='w-[17px] h-[17px] mt-1' />
@@ -120,7 +156,7 @@ const Home = () => {
                     value={search}
                     placeholder='Search name, Speciality'
                     onChange={(e) => setSearch(e.target.value)}
-                    className='w-full text-[#5D626C] font-euclid font-medium text-sm'
+                    className='w-full text-[#5D626C] font-euclid font-medium text-sm outline-none'
                 />
             </div>
             <div onClick={showDrawer} className='flex items-center gap-2.5 w-[32px] justify-center p-2 rounded-[100px] border border-[#80808040]'>
@@ -171,7 +207,7 @@ const Home = () => {
                         value={search}
                         placeholder='Search Name, Specialization, Hospital'
                         onChange={(e) => setSearch(e.target.value)}
-                        className='w-full text-[#5D626C] font-euclid font-medium text-base'
+                        className='w-full text-[#5D626C] font-euclid font-medium outline-none text-base'
                     />
                 </div>
                 <div className='bg-[#AEB0B5] h-[64px] w-[1px]'></div>
@@ -243,7 +279,7 @@ const Home = () => {
                     <Listbox value={selectedGender} onChange={setSelectedGender}>
                         <div className="relative">
                             <Listbox.Button className="outline-none w-full flex items-center  gap-2.5 bg-[#fff] p-3 h-[48px]"> {/* lg:w-[420px] */}
-                                <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">  {selectedGender.name}</span>
+                                <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">  {selectedGender.name || "Gender"}</span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 pr-2  flex items-center">
                                     <IoIosArrowDown
                                         className="h-5 w-5 text-[#5D626C]"
@@ -291,7 +327,7 @@ const Home = () => {
                     <Listbox value={selectedRatings} onChange={setSelectedRatings}>
                         <div className="relative">
                             <Listbox.Button className="outline-none w-full flex items-center  gap-2.5 bg-[#fff] p-3 h-[48px]"> {/* lg:w-[420px] */}
-                                <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">{selectedRatings.name}</span>
+                                <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">{selectedRatings.name || "Ratings"}</span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 pr-2  flex items-center">
                                     <IoIosArrowDown
                                         className="h-5 w-5 text-[#5D626C]"
@@ -336,10 +372,10 @@ const Home = () => {
                     </Listbox>  
                 </div>
                 <div className='w-[150px]'>
-                    <Listbox value={selected} onChange={setSelected}>
+                    <Listbox value={selectedDate} onChange={setSelectedDate}>
                         <div className="relative">
                             <Listbox.Button className="outline-none w-full flex items-center  gap-2.5 bg-[#fff] p-3 h-[48px]"> {/* lg:w-[420px] */}
-                                <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">  {"Date"}</span>
+                                <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">{selectedDate.name || "Date"}</span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 pr-2  flex items-center">
                                     <IoIosArrowDown
                                         className="h-5 w-5 text-[#5D626C]"
@@ -354,7 +390,7 @@ const Home = () => {
                                 leaveTo="opacity-0"
                             >
                                 <Listbox.Options className="absolute z-10 mt-1 w-[300px] max-h-60  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                                    {location.map((item, index) => (
+                                    {dates.map((item, index) => (
                                         <Listbox.Option
                                             key={index}
                                             className={({ active }) =>
@@ -362,7 +398,56 @@ const Home = () => {
                                                 active ? 'bg-[#E6F6F4] text-[#052011]' : 'text-[#052011]'
                                                 }`
                                             }
-                                            value={item.name}
+                                            value={item}
+                                        >
+                                        {({ selected }) => (
+                                            <>
+                                                <span
+                                                    className={`block truncate ${
+                                                    selected ? 'font-medium' : 'font-normal'
+                                                    } text-[#052011]`}
+                                                    onChange={setSelected}
+                                                >
+                                                    {item.name}
+                                                </span>
+                                            </>
+                                        )}
+                                        </Listbox.Option>
+                                    ))}
+                                </Listbox.Options>
+                            </Transition>
+                        </div>
+                    </Listbox>  
+                </div>
+             
+                <div className='w-[150px]'>
+                    <Listbox value={selectedTime} onChange={setSelectedTime}>
+                        <div className="relative">
+                            <Listbox.Button className="outline-none w-full flex items-center  gap-2.5 bg-[#fff] p-3 h-[48px]"> {/* lg:w-[420px] */}
+                                <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">{selectedTime.name || "Time"}</span>
+                                <span className="pointer-events-none absolute inset-y-0 right-0 pr-2  flex items-center">
+                                    <IoIosArrowDown
+                                        className="h-5 w-5 text-[#5D626C]"
+                                        aria-hidden="true"
+                                    />
+                                </span>
+                            </Listbox.Button>
+                            <Transition
+                                as={Fragment}
+                                leave="transition ease-in duration-100"
+                                leaveFrom="opacity-100"
+                                leaveTo="opacity-0"
+                            >
+                                <Listbox.Options className="absolute z-10 mt-1 w-[300px] max-h-60  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                                    {times.map((item, index) => (
+                                        <Listbox.Option
+                                            key={index}
+                                            className={({ active }) =>
+                                                `relative cursor-default select-none py-2 pl-4 pr-4 ${
+                                                active ? 'bg-[#E6F6F4] text-[#052011]' : 'text-[#052011]'
+                                                }`
+                                            }
+                                            value={item}
                                         >
                                         {({ selected }) => (
                                             <>
@@ -384,10 +469,10 @@ const Home = () => {
                     </Listbox>  
                 </div>
                 <div className='w-[150px]'>
-                    <Listbox value={selected} onChange={setSelected}>
+                    <Listbox value={selectedSpeciality} onChange={setSelectedSpeciality}>
                         <div className="relative">
                             <Listbox.Button className="outline-none w-full flex items-center  gap-2.5 bg-[#fff] p-3 h-[48px]"> {/* lg:w-[420px] */}
-                                <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">  {"Time"}</span>
+                                <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">{selectedSpeciality.name || "Specialty"}</span>
                                 <span className="pointer-events-none absolute inset-y-0 right-0 pr-2  flex items-center">
                                     <IoIosArrowDown
                                         className="h-5 w-5 text-[#5D626C]"
@@ -402,7 +487,7 @@ const Home = () => {
                                 leaveTo="opacity-0"
                             >
                                 <Listbox.Options className="absolute z-10 mt-1 w-[300px] max-h-60  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                                    {location.map((item, index) => (
+                                    {speciality.map((item, index) => (
                                         <Listbox.Option
                                             key={index}
                                             className={({ active }) =>
@@ -410,55 +495,7 @@ const Home = () => {
                                                 active ? 'bg-[#E6F6F4] text-[#052011]' : 'text-[#052011]'
                                                 }`
                                             }
-                                            value={item.name}
-                                        >
-                                        {({ selected }) => (
-                                            <>
-                                                <span
-                                                    className={`block truncate ${
-                                                    selected ? 'font-medium' : 'font-normal'
-                                                    } text-[#052011]`}
-                                                    onChange={setSelected}
-                                                >
-                                                    {item.name}
-                                                </span>
-                                            </>
-                                        )}
-                                        </Listbox.Option>
-                                    ))}
-                                </Listbox.Options>
-                            </Transition>
-                        </div>
-                    </Listbox>  
-                </div>
-                <div className='w-[150px]'>
-                    <Listbox value={selected} onChange={setSelected}>
-                        <div className="relative">
-                            <Listbox.Button className="outline-none w-full flex items-center  gap-2.5 bg-[#fff] p-3 h-[48px]"> {/* lg:w-[420px] */}
-                                <span className="block truncate w-full text-left text-[#000] font-medium  font-euclid">  {"Specialty"}</span>
-                                <span className="pointer-events-none absolute inset-y-0 right-0 pr-2  flex items-center">
-                                    <IoIosArrowDown
-                                        className="h-5 w-5 text-[#5D626C]"
-                                        aria-hidden="true"
-                                    />
-                                </span>
-                            </Listbox.Button>
-                            <Transition
-                                as={Fragment}
-                                leave="transition ease-in duration-100"
-                                leaveFrom="opacity-100"
-                                leaveTo="opacity-0"
-                            >
-                                <Listbox.Options className="absolute z-10 mt-1 w-[300px] max-h-60  overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-                                    {location.map((item, index) => (
-                                        <Listbox.Option
-                                            key={index}
-                                            className={({ active }) =>
-                                                `relative cursor-default select-none py-2 pl-4 pr-4 ${
-                                                active ? 'bg-[#E6F6F4] text-[#052011]' : 'text-[#052011]'
-                                                }`
-                                            }
-                                            value={item.name}
+                                            value={item}
                                         >
                                         {({ selected }) => (
                                             <>
@@ -485,13 +522,13 @@ const Home = () => {
         <div className='w-full px-5 lg:px-[104px] flex flex-col pb-[59px] gap-[28px] mt-5'>
             <div className='flex items-center lg:justify-between justify-center'>
                 <p className='text-[#25324B] font-semibold text-[20px] lg:text-[36px] font-euclid'>Our Top Doctors</p>
-                <p className='text-[#3E5EA9] text-base hidden lg:flex font-medium font-euclid'>See More</p>
+                <p onClick={() => navigate("/find-a-doctor")} className='text-[#3E5EA9] cursor-pointer text-base hidden lg:flex font-medium font-euclid'>See More</p>
             </div>
             <div className='mt-[28px] grid grid-cols-2 lg:grid-cols-4 gap-6'>
                 {
                     doctorData?.map((item, index) => (
                         <div className='flex flex-col gap-3 lg:h-[342px] cursor-pointer' key={index} onClick={() => navigate("/doctor/info", { state:item})}>
-                            <img src={item?.img} alt={item?.name} className='lg:w-[300px] lg:h-[282px]' />
+                            <img src={item?.img} alt={item?.name} className='lg:w-[300px] lg:h-[282px] transition-transform duration-300 transform hover:scale-110' />
                             <div className='flex items-start justify-between'>
                                 <div className='flex flex-col'>
                                     <p className='text-[#000000] font-medium font-euclid text-base'>{item?.name}</p>
@@ -576,8 +613,8 @@ const Home = () => {
                     </p>
                 </div>
             </div>
-            <button className='flex items-center w-[197px] h-[32px] lg:h-[48px] border border-[#3E5EA9] rounded-lg justify-center'>
-                <p className='text-[#3E5EA9] font-euclid text-base font-medium'>Post a Job</p>
+            <button className='flex items-center w-[197px] group hover:bg-[#3E5EA9] h-[32px] lg:h-[48px] border border-[#3E5EA9] rounded-lg justify-center'>
+                <p className='text-[#3E5EA9] font-euclid text-base  transition-colors group-hover:text-[#fff] font-medium'>Post a Job</p>
             </button>
         </div>
 
